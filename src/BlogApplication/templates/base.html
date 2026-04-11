@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">My Blog</a>
+            <div class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <span class="nav-item nav-link">Hi, {{ user.username }}</span>
+                <a class="nav-item nav-link text-danger" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        {% if messages %}{% for m in messages %}<div class="alert alert-info mt-2">{{m}}</div>{% endfor %}{% endif %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

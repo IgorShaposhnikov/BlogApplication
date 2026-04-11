@@ -1,0 +1,11 @@
+
+# Suggested by folder2md4llms
+*.sqlite3
+*.svg
+bootstrap.min.css
+bootstrap.min.js
+jquery-1.10.2.min.js
+jquery.validate.min.js
+jquery.validate.unobtrusive.min.js
+respond.min.js
+static
