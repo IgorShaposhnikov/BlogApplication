@@ -7,6 +7,8 @@ from rest_framework import viewsets
 from .models import Post, Comment
 from .serializers import PostSerializer
 from .forms import NewUserForm, CommentForm
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')
@@ -49,3 +51,42 @@ def login_request(request):
 def logout_request(request):
     logout(request)
     return redirect("home")
+
+def cookie_session(request):
+    request.session.set_test_cookie()
+    return HttpResponse("<h1>dataflair</h1><p>Test cookie set!</p>")
+
+def cookie_delete(request):
+    if request.session.test_cookie_worked():
+        request.session.delete_test_cookie()
+        response = HttpResponse("dataflair<br> cookie created and then deleted")
+    else:
+        response = HttpResponse("Dataflair <br> Your browser does not accept cookies")
+    return response
+
+# --- Создание и доступ к сессиям (стр. 8-12 PDF) ---
+def create_session(request):
+    request.session['name'] = 'username'
+    request.session['password'] = 'password123'
+    return HttpResponse("<h1>dataflair<br> the session is set</h1>")
+
+def access_session(request):
+    response = "<h1>Welcome to Sessions of dataflair</h1><br>"
+    if request.session.get('name'):
+        response += "Name : {0} <br>".format(request.session.get('name'))
+        if request.session.get('password'):
+            response += "Password : {0} <br>".format(request.session.get('password'))
+        return HttpResponse(response)
+    else:
+        # Если сессии нет, перенаправляем на создание (стр. 9 PDF)
+        return redirect('create_session_url')
+
+def delete_session(request):
+    try:
+        if 'name' in request.session:
+            del request.session['name']
+        if 'password' in request.session:
+            del request.session['password']
+    except KeyError:
+        pass
+    return HttpResponse("<h1>dataflair<br>Session Data cleared</h1>")
