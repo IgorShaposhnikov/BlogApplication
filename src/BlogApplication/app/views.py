@@ -10,6 +10,7 @@ from .forms import NewUserForm, CommentForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 import logging
+import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +20,7 @@ class PostList(generic.ListView):
 
 	def get(self, request, *args, **kwargs):
 		# 3. Записываем сообщение в лог
-		logger.warning(f'Homepage was accessed at {datetime.now()} hours!')
+		logger.warning(f'Homepage was accessed at {datetime.datetime.now()} hours!')
 		return super().get(request, *args, **kwargs)
 
 def post_detail(request, slug):
