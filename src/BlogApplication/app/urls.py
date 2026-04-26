@@ -2,13 +2,14 @@ from django.urls import path, include
 from . import views
 from django.contrib.auth import views as auth_views
 from rest_framework.routers import DefaultRouter
+from django.views.decorators.cache import cache_page
 
 router = DefaultRouter()
 router.register(r'posts', views.PostViewSet, basename='post')
 
 urlpatterns = [
     # 1. Главная страница
-    path('', views.PostList.as_view(), name='home'),
+    path('', cache_page(600)(views.PostList.as_view()), name='home'),
 
     # 2. Аутентификация (Вход, Выход, Регистрация)
     path('register/', views.register_request, name="register"),
