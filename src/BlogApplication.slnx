@@ -1,3 +1,7 @@
 <Solution>
+  <Folder Name="/build/">
+    <File Path="BlogApplication/docker-compose.yml" />
+    <File Path="BlogApplication/Dockerfile" />
+  </Folder>
   <Project Path="BlogApplication/BlogApplication.pyproj" Type="888888a0-9f3d-457c-b088-3a5042f75d52" Id="a2cbe19b-6611-436c-a761-a868d55bef49" />
 </Solution>

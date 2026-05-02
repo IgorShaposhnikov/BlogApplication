@@ -34,6 +34,7 @@
     <Compile Include="app\admin.py" />
     <Compile Include="app\forms.py" />
     <Compile Include="app\models.py" />
+    <Compile Include="app\serializers.py" />
     <Compile Include="app\tests.py" />
     <Compile Include="app\urls.py" />
     <Compile Include="app\views.py" />
@@ -59,6 +60,7 @@
     <Folder Include="templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".env" />
     <Content Include="app\templates\app\index.html" />
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />
@@ -69,6 +71,8 @@
     <Content Include="app\templates\app\password_reset_confirm.html" />
     <Content Include="app\templates\app\password_reset_done.html" />
     <Content Include="app\templates\app\register.html" />
+    <Content Include="docker-compose.yml" />
+    <Content Include="Dockerfile" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />

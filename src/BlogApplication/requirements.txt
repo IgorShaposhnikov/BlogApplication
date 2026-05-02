@@ -2,3 +2,6 @@ django>=3.2.14
 djangorestframework
 django-crispy-forms
 crispy-bootstrap4
+psycopg2-binary
+gunicorn
+python-decouple
